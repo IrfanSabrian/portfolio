@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Irfan Sabrian Fadhillah - Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio of Irfan Sabrian Fadhillah - Frontend Developer, Web Designer, and Data Analytics Explorer"
+    />
+    <meta name="author" content="Irfan Sabrian Fadhillah" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#2563eb",
+              secondary: "#1e40af",
+            },
+            fontFamily: {
+              poppins: ["Poppins", "sans-serif"],
+            },
+            height: {
+              navbar: "80px",
+            },
+          },
+        },
+      };
+    </script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+  <body class="font-poppins text-gray-800 overflow-x-hidden">
+    <!-- Navbar -->
+    <nav
+      class="fixed top-0 w-full h-navbar transition-all duration-300 z-50 navbar-at-top"
+    >
+      <div
+        class="max-w-7xl mx-auto px-6 h-full flex justify-between items-center"
+      >
+        <div class="logo-container flex items-center gap-3">
+          <svg
+            class="logo-svg h-8 w-auto transition-colors duration-300"
+            viewBox="0 0 304.95 285.2"
+          >
+            <polygon
+              class="logo-path"
+              points="0 69.06 168.67 69.06 167.76 116.08 49.29 116.08 49.74 142.64 104 142.64 104.46 187.53 48.84 187.53 49.29 285.2 0 285.2 0 69.06"
+            />
+            <path
+              class="logo-path"
+              d="M120.28,188.89l.45-46.12,28.49-.12s33.46-8.47,37.53-37.86.94,12.53.24-17.25-40.03-39.27-40.03-39.27l-89.99-.83V0l94.96.32s70.99,1.81,87.27,77.32-61.05,104-61.05,104l73.25,103.55h-60.59"
+            />
+            <polygon
+              class="logo-path"
+              points="78.03 284.3 125.28 211.04 153.32 247.67 127.32 284.3 78.03 284.3"
+            />
+            <polygon
+              class="logo-path"
+              points="304.95 204.88 258.44 278.61 230.04 242.27 255.67 205.38 304.95 204.88"
+            />
+            <rect class="logo-path" width="41.15" height="47.35" />
+          </svg>
+          <span
+            class="text-xl font-semibold logo-text transition-colors duration-300"
+            >Irfan Sabrian</span
+          >
+        </div>
+        <ul class="hidden md:flex items-center space-x-10 h-full">
+          <li class="h-full flex items-center">
+            <a
+              href="#home"
+              class="nav-link flex items-center space-x-2 transition-colors px-4"
+            >
+              <i class="fas fa-home"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          <li class="h-full flex items-center">
+            <a
+              href="#services"
+              class="nav-link flex items-center space-x-2 transition-colors px-4"
+            >
+              <i class="fas fa-laptop-code"></i>
+              <span>Services</span>
+            </a>
+          </li>
+          <li class="h-full flex items-center">
+            <a
+              href="#projects"
+              class="nav-link flex items-center space-x-2 transition-colors px-4"
+            >
+              <i class="fas fa-code"></i>
+              <span>Projects</span>
+            </a>
+          </li>
+          <li class="h-full flex items-center">
+            <a
+              href="#contact"
+              class="nav-link flex items-center space-x-2 transition-colors px-4"
+            >
+              <i class="fas fa-envelope"></i>
+              <span>Contact</span>
+            </a>
+          </li>
+        </ul>
+        <button
+          class="md:hidden text-2xl transition-colors duration-300"
+          id="menu-toggle"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+      <!-- Mobile Menu -->
+      <div
+        class="md:hidden hidden bg-white/95 backdrop-blur-md border-t border-gray-100"
+        id="mobile-menu"
+      >
+        <ul class="py-3">
+          <li>
+            <a
+              href="#home"
+              class="block px-6 py-3 text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
+            >
+              <i class="fas fa-home mr-2"></i>Home
+            </a>
+          </li>
+          <li>
+            <a
+              href="#services"
+              class="block px-6 py-3 text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
+            >
+              <i class="fas fa-laptop-code mr-2"></i>Services
+            </a>
+          </li>
+          <li>
+            <a
+              href="#projects"
+              class="block px-6 py-3 text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
+            >
+              <i class="fas fa-code mr-2"></i>Projects
+            </a>
+          </li>
+          <li>
+            <a
+              href="#contact"
+              class="block px-6 py-3 text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
+            >
+              <i class="fas fa-envelope mr-2"></i>Contact
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      id="home"
+      class="hero-section relative bg-gradient-to-br from-primary to-secondary overflow-hidden"
+    >
+      <div id="particles-js" class="absolute inset-0"></div>
+      <div
+        class="hero-content relative z-10 container mx-auto px-4 sm:px-6 lg:px-8"
+      >
+        <div class="max-w-7xl mx-auto w-full">
+          <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div class="text-white text-center md:text-left" data-aos="fade-up">
+              <h2 class="text-xl sm:text-2xl mb-4 opacity-90">Hi, Welcome!!</h2>
+              <h1
+                class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight"
+              >
+                I'm Irfan Sabrian Fadhillah
+              </h1>
+              <p class="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8">
+                <span class="typed-text"></span
+                ><span class="cursor-blink">&nbsp;</span>
+              </p>
+              <div
+                class="text-base sm:text-lg leading-relaxed mb-6 sm:mb-8 opacity-90 max-w-2xl mx-auto md:mx-0"
+              >
+                Frontend Developer with a passion for creating responsive and
+                user-friendly web interfaces. Experienced in modern web
+                technologies and frameworks. Currently exploring data analytics
+                and GIS, combining web development expertise with spatial data
+                visualization.
+              </div>
+              <div
+                class="hero-buttons flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
+                data-aos="fade-up"
+                data-aos-delay="200"
+              >
+                <a
+                  href="#contact"
+                  class="inline-flex items-center justify-center px-6 sm:px-8 py-3 bg-white text-primary rounded-full font-semibold transition-all hover:bg-opacity-90 hover:-translate-y-1 shadow-lg group"
+                >
+                  <i
+                    class="fas fa-envelope mr-2 group-hover:scale-110 transition-transform"
+                  ></i>
+                  Message Me
+                </a>
+                <a
+                  href="path/to/your-cv.pdf"
+                  class="inline-flex items-center justify-center px-6 sm:px-8 py-3 border-2 border-white text-white rounded-full font-semibold transition-all hover:bg-white hover:text-primary hover:-translate-y-1 group"
+                >
+                  <i
+                    class="fas fa-file-alt mr-2 group-hover:scale-110 transition-transform"
+                  ></i>
+                  See CV
+                </a>
+              </div>
+            </div>
+            <div
+              class="hidden md:flex justify-center items-center"
+              data-aos="fade-left"
+            >
+              <div
+                class="w-[300px] h-[300px] lg:w-[400px] lg:h-[400px] relative"
+              >
+                <img
+                  src="images/profile.jpg"
+                  alt="Profile Picture"
+                  class="w-full h-full rounded-full object-cover border-4 border-white/30 shadow-2xl transform hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center mb-16" data-aos="fade-up">
+          What I Do
+        </h2>
+        <div class="max-w-7xl mx-auto">
+          <!-- Main Services -->
+          <div
+            class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+            data-aos="fade-up"
+          >
+            <!-- Web Development -->
+            <div
+              class="bg-white rounded-2xl p-8 shadow-lg hover:-translate-y-2 transition-all duration-300"
+            >
+              <div
+                class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-6"
+              >
+                <i class="fas fa-code text-2xl text-white"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-4">Web Development</h3>
+              <p class="text-gray-600 mb-6">
+                Creating modern and responsive websites with clean code
+                practices. Experience in consuming external APIs and basic
+                Node.js development.
+              </p>
+              <ul class="space-y-3 mb-6">
+                <li class="flex items-center text-gray-700">
+                  <i class="fas fa-check text-primary mr-2"></i>
+                  Responsive Web Design
+                </li>
+                <li class="flex items-center text-gray-700">
+                  <i class="fas fa-check text-primary mr-2"></i>
+                  API Integration
+                </li>
+                <li class="flex items-center text-gray-700">
+                  <i class="fas fa-check text-primary mr-2"></i>
+                  Basic Node.js & Express
+                </li>
+              </ul>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-3 py-1 bg-gray-100 text-primary rounded-full text-sm hover:bg-primary hover:text-white transition-colors"
+                  >HTML5</span
+                >
+                <span
+                  class="px-3 py-1 bg-gray-100 text-primary rounded-full text-sm hover:bg-primary hover:text-white transition-colors"
+                  >CSS3</span
+                >
+                <span
+                  class="px-3 py-1 bg-gray-100 text-primary rounded-full text-sm hover:bg-primary hover:text-white transition-colors"
+                  >JavaScript</span
+                >
+                <span
+                  class="px-3 py-1 bg-gray-100 text-primary rounded-full text-sm hover:bg-primary hover:text-white transition-colors"
+                  >Tailwind</span
+                >
+                <span
+                  class="px-3 py-1 bg-gray-100 text-primary rounded-full text-sm hover:bg-primary hover:text-white transition-colors"
+                  >Node.js</span
+                >
+              </div>
+            </div>
+
+            <!-- GIS Section -->
+            <div
+              class="bg-white rounded-2xl p-8 shadow-lg hover:-translate-y-2 transition-all duration-300"
+            >
+              <div
+                class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-6"
+              >
+                <i class="fas fa-map text-2xl text-white"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-4">GIS Development</h3>
+              <p class="text-gray-600 mb-6">
+                Creating interactive maps and spatial data visualizations for
+                various applications.
+              </p>
+              <ul class="space-y-3 mb-6">
+                <li class="flex items-center text-gray-700">
+                  <i class="fas fa-check text-primary mr-2"></i>
+                  Web Mapping
+                </li>
+                <li class="flex items-center text-gray-700">
+                  <i class="fas fa-check text-primary mr-2"></i>
+                  Spatial Analysis
+                </li>
+                <li class="flex items-center text-gray-700">
+                  <i class="fas fa-check text-primary mr-2"></i>
+                  Data Visualization
+                </li>
+              </ul>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-3 py-1 bg-gray-100 text-primary rounded-full text-sm hover:bg-primary hover:text-white transition-colors"
+                  >Leaflet</span
+                >
+                <span
+                  class="px-3 py-1 bg-gray-100 text-primary rounded-full text-sm hover:bg-primary hover:text-white transition-colors"
+                  >ArcGIS</span
+                >
+              </div>
+            </div>
+
+            <!-- Data Analysis -->
+            <div
+              class="bg-white rounded-2xl p-8 shadow-lg hover:-translate-y-2 transition-all duration-300"
+            >
+              <div
+                class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-6"
+              >
+                <i class="fas fa-chart-line text-2xl text-white"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-4">Data Analysis</h3>
+              <p class="text-gray-600 mb-6">
+                Analyzing and visualizing data using Python and its powerful
+                libraries. Experience with data dashboards using Streamlit.
+              </p>
+              <ul class="space-y-3 mb-6">
+                <li class="flex items-center text-gray-700">
+                  <i class="fas fa-check text-primary mr-2"></i>
+                  Data Processing & Analysis
+                </li>
+                <li class="flex items-center text-gray-700">
+                  <i class="fas fa-check text-primary mr-2"></i>
+                  Data Visualization
+                </li>
+                <li class="flex items-center text-gray-700">
+                  <i class="fas fa-check text-primary mr-2"></i>
+                  Interactive Dashboards
+                </li>
+              </ul>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-3 py-1 bg-gray-100 text-primary rounded-full text-sm hover:bg-primary hover:text-white transition-colors"
+                  >Python</span
+                >
+                <span
+                  class="px-3 py-1 bg-gray-100 text-primary rounded-full text-sm hover:bg-primary hover:text-white transition-colors"
+                  >Pandas</span
+                >
+                <span
+                  class="px-3 py-1 bg-gray-100 text-primary rounded-full text-sm hover:bg-primary hover:text-white transition-colors"
+                  >NumPy</span
+                >
+                <span
+                  class="px-3 py-1 bg-gray-100 text-primary rounded-full text-sm hover:bg-primary hover:text-white transition-colors"
+                  >Matplotlib</span
+                >
+                <span
+                  class="px-3 py-1 bg-gray-100 text-primary rounded-full text-sm hover:bg-primary hover:text-white transition-colors"
+                  >Streamlit</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Additional Services -->
+          <div class="mt-16" data-aos="fade-up">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div
+                class="bg-white p-6 rounded-xl shadow-lg hover:-translate-y-1 transition-all duration-300 flex items-start gap-4"
+              >
+                <div
+                  class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0"
+                >
+                  <i class="fas fa-mobile-alt text-xl text-primary"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold mb-2">Responsive Design</h4>
+                  <p class="text-gray-600 text-sm">
+                    Mobile-first websites that work on all devices
+                  </p>
+                </div>
+              </div>
+
+              <div
+                class="bg-white p-6 rounded-xl shadow-lg hover:-translate-y-1 transition-all duration-300 flex items-start gap-4"
+              >
+                <div
+                  class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0"
+                >
+                  <i class="fas fa-code text-xl text-primary"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold mb-2">Clean Code</h4>
+                  <p class="text-gray-600 text-sm">
+                    Well-structured and maintainable codebase
+                  </p>
+                </div>
+              </div>
+
+              <div
+                class="bg-white p-6 rounded-xl shadow-lg hover:-translate-y-1 transition-all duration-300 flex items-start gap-4"
+              >
+                <div
+                  class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0"
+                >
+                  <i class="fas fa-tachometer-alt text-xl text-primary"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold mb-2">Performance</h4>
+                  <p class="text-gray-600 text-sm">
+                    Fast-loading and optimized applications
+                  </p>
+                </div>
+              </div>
+
+              <div
+                class="bg-white p-6 rounded-xl shadow-lg hover:-translate-y-1 transition-all duration-300 flex items-start gap-4"
+              >
+                <div
+                  class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0"
+                >
+                  <i class="fas fa-sync text-xl text-primary"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold mb-2">Website Redesign</h4>
+                  <p class="text-gray-600 text-sm">
+                    Modernizing and improving existing websites
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20">
+      <div class="container mx-auto px-4 sm:px-6">
+        <h2 class="text-4xl font-bold text-center mb-16" data-aos="fade-up">
+          Recent Projects
+        </h2>
+        <div class="max-w-7xl mx-auto">
+          <div
+            class="flex justify-center flex-wrap gap-3 sm:gap-4 mb-12"
+            data-aos="fade-up"
+          >
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="web">Web Dev</button>
+            <button class="filter-btn" data-filter="system">
+              Information System
+            </button>
+            <button class="filter-btn" data-filter="data">Data Analysis</button>
+            <button class="filter-btn" data-filter="ai">AI/ML</button>
+          </div>
+
+          <div
+            id="projects-container"
+            class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+          >
+            <!-- Projects will be dynamically inserted here by JavaScript -->
+          </div>
+
+          <!-- Pagination Container -->
+          <div id="pagination-container" class="mt-8">
+            <!-- Pagination will be dynamically inserted here by JavaScript -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center mb-16" data-aos="fade-up">
+          Get In Touch
+        </h2>
+        <div class="max-w-7xl mx-auto grid md:grid-cols-5 gap-8">
+          <!-- Contact Info -->
+          <div class="md:col-span-2" data-aos="fade-right">
+            <div class="bg-white rounded-2xl p-8 shadow-lg">
+              <div class="flex items-center gap-4 mb-6">
+                <div
+                  class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white"
+                >
+                  <i class="fas fa-paper-plane text-2xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold">Let's Connect!</h3>
+              </div>
+              <p class="text-gray-600 mb-8">
+                Feel free to reach out for collaborations, opportunities, or
+                just a friendly chat about technology and data!
+              </p>
+              <div class="space-y-4 mb-8">
+                <div class="flex items-center gap-4">
+                  <div
+                    class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-primary"
+                  >
+                    <i class="fas fa-envelope"></i>
+                  </div>
+                  <span class="text-gray-700">irfansabrian34@gmail.com</span>
+                </div>
+                <div class="flex items-center gap-4">
+                  <div
+                    class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-primary"
+                  >
+                    <i class="fas fa-phone"></i>
+                  </div>
+                  <span class="text-gray-700">+6289508669156</span>
+                </div>
+                <div class="flex items-center gap-4">
+                  <div
+                    class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-primary"
+                  >
+                    <i class="fas fa-map-marker-alt"></i>
+                  </div>
+                  <span class="text-gray-700"
+                    >Pontianak, Kalimantan Barat, Indonesia</span
+                  >
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <a
+                  href="#"
+                  class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors"
+                >
+                  <i class="fab fa-github"></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors"
+                >
+                  <i class="fab fa-linkedin"></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors"
+                >
+                  <i class="fab fa-twitter"></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors"
+                >
+                  <i class="fab fa-instagram"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="md:col-span-3" data-aos="fade-left">
+            <div class="bg-white rounded-2xl p-8 shadow-lg">
+              <form class="space-y-6">
+                <div>
+                  <div class="relative">
+                    <i
+                      class="fas fa-user absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+                    ></i>
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Your Name"
+                      required
+                      class="w-full pl-12 pr-4 py-3 bg-gray-50 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <div class="relative">
+                    <i
+                      class="fas fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+                    ></i>
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Your Email"
+                      required
+                      class="w-full pl-12 pr-4 py-3 bg-gray-50 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <div class="relative">
+                    <i
+                      class="fas fa-tag absolute left-4 top-4 text-gray-400"
+                    ></i>
+                    <input
+                      type="text"
+                      name="subject"
+                      placeholder="Subject"
+                      required
+                      class="w-full pl-12 pr-4 py-3 bg-gray-50 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <div class="relative">
+                    <i
+                      class="fas fa-comment-alt absolute left-4 top-4 text-gray-400"
+                    ></i>
+                    <textarea
+                      name="message"
+                      placeholder="Your Message"
+                      required
+                      class="w-full pl-12 pr-4 py-3 bg-gray-50 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all min-h-[150px] resize-y"
+                    ></textarea>
+                  </div>
+                </div>
+                <button
+                  type="submit"
+                  class="w-full bg-primary text-white py-3 px-6 rounded-lg font-semibold flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors group"
+                >
+                  <i
+                    class="fas fa-paper-plane group-hover:translate-x-1 transition-transform"
+                  ></i>
+                  Send Message
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer
+      class="py-8 bg-gradient-to-br from-primary to-secondary text-white/90"
+    >
+      <div class="container mx-auto px-6">
+        <div class="text-center">
+          <p class="text-sm">
+            © 2024 <span class="font-semibold">Irfan Sabrian Fadhillah</span>.
+            All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/projects.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
