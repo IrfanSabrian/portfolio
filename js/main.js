@@ -263,6 +263,16 @@ function throttle(func, limit) {
 
 // Custom cursor implementation
 function initCustomCursor() {
+  // Check if screen width is less than 1024px (typical desktop breakpoint)
+  if (window.innerWidth < 1024) {
+    // Remove existing cursors if they exist
+    const existingCursor = document.querySelector(".custom-cursor");
+    const existingDot = document.querySelector(".cursor-dot");
+    if (existingCursor) existingCursor.remove();
+    if (existingDot) existingDot.remove();
+    return;
+  }
+
   const cursor = document.createElement("div");
   const cursorDot = document.createElement("div");
 
@@ -310,6 +320,19 @@ function initCustomCursor() {
   document.addEventListener("mouseenter", () => {
     cursor.style.display = "block";
     cursorDot.style.display = "block";
+  });
+
+  // Handle window resize
+  window.addEventListener("resize", () => {
+    if (window.innerWidth < 1024) {
+      cursor.remove();
+      cursorDot.remove();
+    } else {
+      if (!document.querySelector(".custom-cursor")) {
+        document.body.appendChild(cursor);
+        document.body.appendChild(cursorDot);
+      }
+    }
   });
 }
 
