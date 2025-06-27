@@ -115,18 +115,17 @@
           </li>
         </ul>
         <button
-          class="md:hidden text-2xl transition-colors duration-300"
-          id="menu-toggle"
-        >
-          <i class="fas fa-bars"></i>
-        </button>
-        <!-- Dark mode toggle -->
-        <button
           id="dark-toggle"
-          class="ml-4 text-xl focus:outline-none"
+          class="text-xl focus:outline-none md:ml-4 mr-2 order-1 md:order-none"
           aria-label="Toggle dark mode"
         >
           <i class="fas fa-moon"></i>
+        </button>
+        <button
+          class="md:hidden text-2xl transition-colors duration-300 order-2 md:order-none"
+          id="menu-toggle"
+        >
+          <i class="fas fa-bars"></i>
         </button>
       </div>
       <!-- Mobile Menu -->
