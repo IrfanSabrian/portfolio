@@ -385,3 +385,54 @@ function initProjectFiltering() {
     });
   });
 }
+
+// Dark mode toggle
+const darkToggle = document.getElementById("dark-toggle");
+const htmlEl = document.documentElement;
+
+function setDarkMode(enabled) {
+  if (enabled) {
+    htmlEl.classList.add("dark");
+    darkToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    localStorage.setItem("theme", "dark");
+    // Update particles to star mode
+    if (window.pJSDom && window.pJSDom[0]) {
+      window.pJSDom[0].pJS.particles.line_linked.enable = false;
+      window.pJSDom[0].pJS.particles.color.value = "#ffffff";
+      window.pJSDom[0].pJS.particles.shape.type = "circle";
+      window.pJSDom[0].pJS.particles.size.value = 2;
+      window.pJSDom[0].pJS.particles.opacity.value = 1;
+      window.pJSDom[0].pJS.fn.particlesRefresh();
+    }
+  } else {
+    htmlEl.classList.remove("dark");
+    darkToggle.innerHTML = '<i class="fas fa-moon"></i>';
+    localStorage.setItem("theme", "light");
+    // Update particles to normal mode
+    if (window.pJSDom && window.pJSDom[0]) {
+      window.pJSDom[0].pJS.particles.line_linked.enable = true;
+      window.pJSDom[0].pJS.particles.color.value = "#ffffff";
+      window.pJSDom[0].pJS.particles.shape.type = "circle";
+      window.pJSDom[0].pJS.particles.size.value = 3;
+      window.pJSDom[0].pJS.particles.opacity.value = 0.5;
+      window.pJSDom[0].pJS.fn.particlesRefresh();
+    }
+  }
+}
+
+darkToggle.addEventListener("click", () => {
+  setDarkMode(!htmlEl.classList.contains("dark"));
+});
+
+// On load, set theme from localStorage or system
+(function () {
+  const theme = localStorage.getItem("theme");
+  if (
+    theme === "dark" ||
+    (!theme && window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    setDarkMode(true);
+  } else {
+    setDarkMode(false);
+  }
+})();

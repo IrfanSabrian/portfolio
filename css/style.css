@@ -361,3 +361,535 @@
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
+
+/* Timeline vertical lines for education and experience */
+@media (min-width: 768px) {
+  .timeline-edu-line {
+    position: absolute;
+    right: 0;
+    left: auto;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: rgba(37, 99, 235, 0.2);
+    border-radius: 9999px;
+    z-index: 0;
+  }
+  .timeline-exp-line {
+    position: absolute;
+    left: 0;
+    right: auto;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: rgba(37, 99, 235, 0.2);
+    border-radius: 9999px;
+    z-index: 0;
+  }
+}
+
+/* Timeline dot for milestone */
+.timeline-dot {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #2563eb;
+  border: 4px solid #fff;
+  z-index: 20;
+  box-shadow: 0 2px 8px 0 rgba(37, 99, 235, 0.15);
+}
+
+@media (min-width: 768px) {
+  .timeline-edu-line {
+    width: 6px;
+    background: rgba(37, 99, 235, 0.12);
+  }
+  .timeline-exp-line {
+    width: 6px;
+    background: rgba(37, 99, 235, 0.12);
+  }
+}
+
+/* Milestone card hover effect */
+.group:hover .shadow-lg {
+  box-shadow: 0 10px 32px 0 rgba(37, 99, 235, 0.18),
+    0 2px 8px 0 rgba(37, 99, 235, 0.1);
+  transform: translateY(-8px);
+}
+
+/* Icon gradient (handled by tailwind utility in HTML) */
+
+/* Arrow for milestone card */
+.arrow-left {
+  position: absolute;
+  left: -16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 16px solid #fff;
+  z-index: 10;
+}
+.arrow-right {
+  position: absolute;
+  right: -16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 16px solid #fff;
+  z-index: 10;
+}
+
+/* Pulse animation for timeline-dot */
+.pulse {
+  animation: pulse-dot 1.5s infinite;
+}
+@keyframes pulse-dot {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.3);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(37, 99, 235, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+  }
+}
+
+/* Fade-in up animation for card */
+.animate-fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease forwards;
+}
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 767px) {
+  .timeline-edu-line,
+  .timeline-exp-line {
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%);
+  }
+  .timeline-dot {
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%);
+  }
+  .arrow-left,
+  .arrow-right {
+    left: 50% !important;
+    right: auto !important;
+    transform: translate(-50%, -50%);
+    border-left: 16px solid #fff !important;
+    border-right: none !important;
+  }
+}
+
+/* Compact minimalist timeline lines */
+.timeline-edu-line-minimal,
+.timeline-exp-line-minimal {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1.5px;
+  background: rgba(37, 99, 235, 0.15);
+  border-radius: 9999px;
+  z-index: 0;
+}
+@media (min-width: 768px) {
+  .timeline-edu-line-minimal {
+    right: 0;
+    left: auto;
+  }
+  .timeline-exp-line-minimal {
+    left: 0;
+    right: auto;
+  }
+}
+@media (max-width: 767px) {
+  .timeline-edu-line-minimal,
+  .timeline-exp-line-minimal {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+}
+
+/* Compact timeline dot */
+.timeline-dot-minimal {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #2563eb;
+  border: 1.5px solid #fff;
+  z-index: 10;
+}
+@media (min-width: 768px) {
+  .timeline-dot-minimal.edu {
+    right: 0;
+    left: auto;
+    transform: none;
+  }
+  .timeline-dot-minimal.exp {
+    left: 0;
+    right: auto;
+    transform: none;
+  }
+}
+@media (max-width: 767px) {
+  .timeline-dot-minimal {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+}
+
+/* Card and icon compact */
+.group .shadow-sm {
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+.group:hover .shadow-sm {
+  box-shadow: 0 6px 16px 0 rgba(37, 99, 235, 0.1);
+}
+
+.timeline-icon-minimal {
+  font-size: 1.5rem;
+  color: #2563eb;
+  margin-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.max-w-md {
+  max-width: 340px;
+}
+
+/* Compact timeline zig-zag */
+.timeline-center-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(37, 99, 235, 0.15);
+  z-index: 0;
+  transform: translateX(-50%);
+}
+.timeline-item {
+  position: relative;
+  display: flex;
+  min-height: 70px;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 0;
+}
+.timeline-left {
+  justify-content: flex-start;
+}
+.timeline-right {
+  justify-content: flex-end;
+}
+.timeline-dot-center.small {
+  position: absolute;
+  left: 50%;
+  top: 20px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #2563eb;
+  border: 1px solid #fff;
+  z-index: 10;
+  transform: translateX(-50%);
+}
+.timeline-icon-center.small {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 9999px;
+  box-shadow: 0 1px 4px 0 rgba(37, 99, 235, 0.08);
+  border: 1px solid #2563eb;
+  color: #2563eb;
+  font-size: 1rem;
+  z-index: 20;
+}
+.timeline-card {
+  position: relative;
+  z-index: 20;
+  box-shadow: 0 1px 4px 0 rgba(37, 99, 235, 0.08);
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  max-width: 220px;
+  background: #fff;
+  text-align: left;
+  transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+}
+.timeline-card:focus {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+.group:hover .timeline-card {
+  box-shadow: 0 6px 24px 0 rgba(37, 99, 235, 0.13),
+    0 1.5px 6px 0 rgba(37, 99, 235, 0.08);
+  border-color: #2563eb;
+  transform: scale(1.045);
+}
+.timeline-left .timeline-card {
+  margin-left: 0;
+  margin-right: 0.5rem;
+}
+.timeline-right .timeline-card {
+  margin-right: 0;
+  margin-left: 0.5rem;
+}
+@media (max-width: 767px) {
+  .timeline-item {
+    flex-direction: column;
+    align-items: center;
+    min-height: 60px;
+  }
+  .timeline-card {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center;
+  }
+  .timeline-left .timeline-card,
+  .timeline-right .timeline-card {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+/* Icon middle align for timeline card */
+@media (min-width: 768px) {
+  .icon-middle-left {
+    position: absolute;
+    left: calc(50% - 14px);
+    top: 50%;
+    transform: translate(-120%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .icon-middle-right {
+    position: absolute;
+    left: calc(50% + 14px);
+    top: 50%;
+    transform: translate(20%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .timeline-left .timeline-dot-center.small,
+  .timeline-right .timeline-dot-center.small {
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+@media (max-width: 767px) {
+  .icon-middle-left,
+  .icon-middle-right {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .timeline-dot-center.small {
+    left: 50%;
+    top: 20px;
+    transform: translateX(-50%);
+  }
+}
+
+/* Interaktif visual icon dan dot timeline */
+.timeline-icon-center.small,
+.timeline-dot-center.small {
+  transition: box-shadow 0.22s, transform 0.22s, border-color 0.22s;
+  cursor: pointer;
+}
+.group:hover .timeline-icon-center.small,
+.group:hover .timeline-dot-center.small {
+  transform: scale(1.18);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1),
+    0 2px 8px 0 rgba(37, 99, 235, 0.13);
+  border-color: #2563eb;
+}
+/* Kustom arah scale icon untuk sisi kanan (timeline-right) */
+.timeline-item.timeline-right.group:hover .timeline-icon-center.small {
+  transform: scale(1.18) translateX(-28px);
+  z-index: 30;
+}
+.timeline-item.timeline-left.group:hover .timeline-icon-center.small {
+  transform: scale(1.18) translateX(8px);
+  z-index: 20;
+}
+.timeline-dot-center.small {
+  box-shadow: 0 1px 4px 0 rgba(37, 99, 235, 0.1);
+}
+
+/* Dark mode styles */
+.dark body,
+.dark {
+  background: #0b1120;
+  color: #e5e7eb;
+}
+.dark .bg-white,
+.dark.bg-white {
+  background: #1e293b !important;
+}
+.dark .bg-gray-50,
+.dark.bg-gray-100,
+.dark.bg-gray-200 {
+  background: #162032 !important;
+}
+.dark .text-gray-800,
+.dark .text-gray-700,
+.dark .text-gray-600 {
+  color: #e5e7eb !important;
+}
+.dark .shadow-lg,
+.dark .shadow-xs,
+.dark .shadow-sm {
+  box-shadow: 0 2px 8px 0 rgba(30, 41, 59, 0.18);
+}
+.dark .border-gray-100,
+.dark .border-gray-200,
+.dark .border {
+  border-color: #334155 !important;
+}
+.dark .timeline-card {
+  background: #1e293b !important;
+  color: #e5e7eb;
+  border-color: #334155;
+}
+.dark .timeline-center-line {
+  background: rgba(255, 255, 255, 0.12);
+}
+.dark .timeline-dot-center.small,
+.dark .timeline-dot-minimal {
+  background: #fff;
+  border-color: #1e293b;
+}
+.dark .timeline-icon-center.small {
+  background: #1e293b;
+  color: #fff;
+  border-color: #fff;
+}
+.dark .bg-gradient-to-b,
+.dark .bg-gradient-to-br {
+  background: linear-gradient(135deg, #0b1120 0%, #1e293b 100%) !important;
+}
+.dark .from-white,
+.dark .from-gray-50,
+.dark .from-gray-100 {
+  --tw-gradient-from: #1e293b !important;
+  --tw-gradient-stops: var(--tw-gradient-from),
+    var(--tw-gradient-to, rgba(30, 41, 59, 0));
+}
+.dark .to-white,
+.dark .to-gray-50,
+.dark .to-gray-100 {
+  --tw-gradient-to: #0b1120 !important;
+}
+
+/* Gradient overlay experience section dark mode transparan */
+.dark #experience .bg-gradient-to-b,
+.dark #experience .bg-gradient-to-t,
+.dark #experience .from-white,
+.dark #experience .to-white {
+  background: transparent !important;
+}
+
+/* Scrollbar dark mode benar-benar override warna biru bawaan Tailwind dan browser */
+html.dark ::-webkit-scrollbar {
+  width: 10px;
+  background: #0b1120 !important;
+  transition: background 0.4s;
+}
+html.dark ::-webkit-scrollbar-thumb {
+  background: #334155 !important;
+  border-radius: 5px;
+  transition: background 0.4s;
+}
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #64748b !important;
+}
+html.dark ::-webkit-scrollbar-track {
+  background: #0b1120 !important;
+}
+html.dark {
+  scrollbar-color: #334155 #0b1120 !important;
+  scrollbar-width: thin;
+}
+
+/* Transisi smooth dark/light mode pada html dan body */
+html,
+body {
+  transition: background 0.4s, color 0.4s, border-color 0.4s, box-shadow 0.4s;
+}
+
+/* Icon darkmode di navbar, selalu sama dengan icon navbar lain */
+#dark-toggle i {
+  color: inherit !important;
+  transition: color 0.2s;
+}
+.navbar-at-top #dark-toggle i,
+.dark.navbar-at-top #dark-toggle i {
+  color: #fff;
+}
+.navbar-scrolled #dark-toggle i,
+.dark.navbar-scrolled #dark-toggle i {
+  color: #2563eb;
+}
+
+/* Sun icon darkmode toggle warna sesuai navbar */
+.navbar-at-top #dark-toggle .fa-sun,
+.dark.navbar-at-top #dark-toggle .fa-sun {
+  color: #fff !important;
+}
+.navbar-scrolled #dark-toggle .fa-sun,
+.dark.navbar-scrolled #dark-toggle .fa-sun {
+  color: #4b5563 !important;
+}
+
+/* Pagination dark mode */
+.dark .pagination-btn {
+  background: #1e293b !important;
+  color: #e5e7eb !important;
+  border: 1px solid #334155;
+}
+.dark .pagination-btn.active,
+.dark .pagination-btn.bg-primary {
+  background: #2563eb !important;
+  color: #fff !important;
+  border: 1px solid #2563eb;
+}
+.dark .pagination-btn:hover:not(.active) {
+  background: #334155 !important;
+  color: #fff !important;
+}
