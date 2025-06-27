@@ -495,6 +495,10 @@
     border-left: 16px solid #fff !important;
     border-right: none !important;
   }
+  /* Sembunyikan icon timeline di mobile */
+  .timeline-icon-center.small {
+    display: none !important;
+  }
 }
 
 /* Compact minimalist timeline lines */
