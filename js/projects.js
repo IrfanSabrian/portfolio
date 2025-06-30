@@ -6,7 +6,7 @@ const projects = [
     description:
       "Redesigned and developed the official website for the Department of Communication and Information Technology of West Kalimantan Province using modern web technologies to enhance UI/UX and performance",
     categories: ["web"],
-    image: "images/project1.jpg",
+    image: "assets/images/project1.jpg",
     technologies: [
       "Hugo",
       "Tailwind CSS",
@@ -25,7 +25,7 @@ const projects = [
     description:
       "Redesigned and developed the official website for the Research and Development Agency of West Kalimantan Province using modern web technologies to enhance UI/UX and performance",
     categories: ["web"],
-    image: "images/project2.jpg",
+    image: "assets/images/project2.jpg",
     technologies: [
       "Hugo",
       "Tailwind CSS",
@@ -44,7 +44,7 @@ const projects = [
     description:
       "Interactive room management system with data analytics features for Polnep's Informatics Department, featuring 2D floor plans, real-time status monitoring, usage statistics, and occupancy analysis",
     categories: ["web", "system"],
-    image: "images/project3.jpg",
+    image: "assets/images/project3.jpg",
     technologies: [
       "JavaScript",
       "HTML5",
@@ -68,7 +68,7 @@ const projects = [
     description:
       "Comprehensive employee management system with advanced data analytics capabilities, featuring CRUD operations, demographic analysis, salary management, and employee lifecycle tracking. Built with Python and Streamlit for interactive data visualization and analysis.",
     categories: ["data", "system"],
-    image: "images/project4.jpg",
+    image: "assets/images/project4.jpg",
     technologies: [
       "Python",
       "Streamlit",

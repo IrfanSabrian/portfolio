@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PortfolioIrfanS.</title>
-    <link rel="icon" type="image/svg+xml" href="images/Logo Irfan Blue.svg" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="assets/images/Logo Irfan Blue.svg"
+    />
     <meta
       name="description"
       content="Portfolio of Irfan Sabrian - Frontend Developer, Web Designer, and Data Analytics Explorer"
@@ -39,6 +43,12 @@
     />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" />
+    <!-- PDF Viewer -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf_viewer.min.css"
+      rel="stylesheet"
+    />
   </head>
   <body class="font-poppins text-gray-800 overflow-x-hidden">
     <!-- Navbar -->
@@ -195,7 +205,7 @@
               <div class="flex justify-center md:hidden mb-6">
                 <div class="w-48 h-48 sm:w-64 sm:h-64 relative">
                   <img
-                    src="images/profile.png"
+                    src="assets/images/profile.png"
                     alt="Profile Picture"
                     class="w-full h-full rounded-full object-cover border-4 border-white/30 shadow-2xl"
                   />
@@ -224,15 +234,15 @@
                   ></i>
                   Message Me
                 </a>
-                <a
-                  href="path/to/your-cv.pdf"
+                <button
+                  id="cv-modal-btn"
                   class="inline-flex items-center justify-center px-6 sm:px-8 py-3 border-2 border-white text-white rounded-full font-semibold transition-all hover:bg-white hover:text-primary hover:-translate-y-1 group"
                 >
                   <i
                     class="fas fa-file-alt mr-2 group-hover:scale-110 transition-transform"
                   ></i>
                   See CV
-                </a>
+                </button>
               </div>
             </div>
             <div
@@ -243,7 +253,7 @@
                 class="w-[300px] h-[300px] lg:w-[400px] lg:h-[400px] relative"
               >
                 <img
-                  src="images/profile.png"
+                  src="assets/images/profile.png"
                   alt="Profile Picture"
                   class="w-full h-full rounded-full object-cover border-4 border-white/30 shadow-2xl transform hover:scale-105 transition-transform duration-300"
                 />
@@ -835,5 +845,82 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="js/projects.js"></script>
     <script src="js/main.js"></script>
+
+    <!-- CV Modal -->
+    <div id="cv-modal" class="fixed inset-0 z-50 hidden">
+      <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+      <div class="fixed inset-0 flex items-center justify-center p-4">
+        <div
+          class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl w-full max-w-5xl max-h-[90vh] flex flex-col border border-gray-200 dark:border-gray-700"
+        >
+          <div
+            class="flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-700"
+          >
+            <div class="flex items-center gap-4">
+              <h3
+                class="text-xl font-semibold text-gray-800 dark:text-gray-100"
+              >
+                CV_Irfan Sabrian
+              </h3>
+              <div class="flex items-center gap-2 ml-4">
+                <button
+                  id="cv-zoom-out"
+                  class="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                >
+                  <i class="fas fa-search-minus"></i>
+                </button>
+                <span
+                  id="cv-zoom-level"
+                  class="text-sm font-medium min-w-[3rem] text-center text-gray-600 dark:text-gray-300"
+                  >100%</span
+                >
+                <button
+                  id="cv-zoom-in"
+                  class="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                >
+                  <i class="fas fa-search-plus"></i>
+                </button>
+                <button
+                  id="cv-download"
+                  class="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors ml-2"
+                >
+                  <i class="fas fa-download"></i>
+                </button>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <button
+                id="cv-prev"
+                class="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              >
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <span
+                id="cv-page-info"
+                class="text-sm font-medium min-w-[5rem] text-center text-gray-600 dark:text-gray-300"
+                >Page 1 of 1</span
+              >
+              <button
+                id="cv-next"
+                class="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              >
+                <i class="fas fa-chevron-right"></i>
+              </button>
+              <button
+                id="cv-modal-close"
+                class="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors ml-2"
+              >
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+          <div class="flex-1 p-4 overflow-auto bg-gray-50 dark:bg-gray-900">
+            <div id="pdf-container" class="mx-auto">
+              <canvas id="pdf-viewer" class="shadow-lg rounded-lg"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

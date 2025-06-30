@@ -351,8 +351,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initialize custom cursor
   initCustomCursor();
 
-  // Initialize project filtering with optimized performance
+  // Initialize project filtering
   initProjectFiltering();
+
+  // Initialize CV Modal functionality
+  initCVModal();
 });
 
 // Project filtering with optimized performance
@@ -436,3 +439,168 @@ darkToggle.addEventListener("click", () => {
     setDarkMode(false);
   }
 })();
+
+// Initialize CV Modal functionality
+function initCVModal() {
+  const cvModal = document.getElementById("cv-modal");
+  const cvModalBtn = document.getElementById("cv-modal-btn");
+  const cvModalClose = document.getElementById("cv-modal-close");
+  const pdfContainer = document.getElementById("pdf-container");
+  const canvas = document.getElementById("pdf-viewer");
+  const prevButton = document.getElementById("cv-prev");
+  const nextButton = document.getElementById("cv-next");
+  const pageInfo = document.getElementById("cv-page-info");
+  const zoomInButton = document.getElementById("cv-zoom-in");
+  const zoomOutButton = document.getElementById("cv-zoom-out");
+  const zoomLevel = document.getElementById("cv-zoom-level");
+  const downloadButton = document.getElementById("cv-download");
+
+  // Check if all required elements exist
+  if (!cvModal || !cvModalBtn || !cvModalClose || !canvas) {
+    console.warn("CV Modal: Some elements are missing");
+    return;
+  }
+
+  let pdfDoc = null;
+  let pageNum = 1;
+  let pageRendering = false;
+  let pageNumPending = null;
+  let scale = 1.0;
+  const ctx = canvas.getContext("2d");
+
+  // Initialize PDF.js
+  pdfjsLib.GlobalWorkerOptions.workerSrc =
+    "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+  function renderPage(num) {
+    pageRendering = true;
+    pdfDoc.getPage(num).then((page) => {
+      const viewport = page.getViewport({ scale });
+      canvas.height = viewport.height;
+      canvas.width = viewport.width;
+      pdfContainer.style.width = `${viewport.width}px`;
+
+      const renderContext = {
+        canvasContext: ctx,
+        viewport: viewport,
+      };
+
+      const renderTask = page.render(renderContext);
+
+      renderTask.promise.then(() => {
+        pageRendering = false;
+        if (pageNumPending !== null) {
+          renderPage(pageNumPending);
+          pageNumPending = null;
+        }
+        pageInfo.textContent = `Page ${pageNum} of ${pdfDoc.numPages}`;
+      });
+    });
+  }
+
+  function queueRenderPage(num) {
+    if (pageRendering) {
+      pageNumPending = num;
+    } else {
+      renderPage(num);
+    }
+  }
+
+  function onPrevPage() {
+    if (pageNum <= 1) return;
+    pageNum--;
+    queueRenderPage(pageNum);
+  }
+
+  function onNextPage() {
+    if (pageNum >= pdfDoc.numPages) return;
+    pageNum++;
+    queueRenderPage(pageNum);
+  }
+
+  function updateZoomLevel() {
+    zoomLevel.textContent = `${Math.round(scale * 100)}%`;
+  }
+
+  function zoomIn() {
+    if (scale >= 3.0) return;
+    scale += 0.25;
+    updateZoomLevel();
+    queueRenderPage(pageNum);
+  }
+
+  function zoomOut() {
+    if (scale <= 0.5) return;
+    scale -= 0.25;
+    updateZoomLevel();
+    queueRenderPage(pageNum);
+  }
+
+  // Load PDF
+  function loadPDF() {
+    const url = "assets/pdf/CV_Irfan Sabrian Fadhillah.pdf";
+    pdfjsLib.getDocument(url).promise.then((pdf) => {
+      pdfDoc = pdf;
+      pageInfo.textContent = `Page ${pageNum} of ${pdf.numPages}`;
+      renderPage(pageNum);
+    });
+  }
+
+  function toggleCVModal() {
+    cvModal.classList.toggle("hidden");
+    document.body.classList.toggle("overflow-hidden");
+    if (!cvModal.classList.contains("hidden") && !pdfDoc) {
+      loadPDF();
+    }
+  }
+
+  // Event listeners
+  cvModalBtn.addEventListener("click", toggleCVModal);
+  cvModalClose.addEventListener("click", toggleCVModal);
+  prevButton.addEventListener("click", onPrevPage);
+  nextButton.addEventListener("click", onNextPage);
+  zoomInButton.addEventListener("click", zoomIn);
+  zoomOutButton.addEventListener("click", zoomOut);
+
+  // Download functionality
+  downloadButton.addEventListener("click", () => {
+    const link = document.createElement("a");
+    link.href = "assets/pdf/CV_Irfan Sabrian Fadhillah.pdf";
+    link.download = "CV_Irfan Sabrian Fadhillah.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  });
+
+  // Close modal when clicking outside
+  cvModal.addEventListener("click", (e) => {
+    if (
+      e.target === cvModal ||
+      e.target.classList.contains("backdrop-blur-sm")
+    ) {
+      toggleCVModal();
+    }
+  });
+
+  // Close modal with Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !cvModal.classList.contains("hidden")) {
+      toggleCVModal();
+    }
+  });
+
+  // Handle keyboard navigation
+  document.addEventListener("keydown", (e) => {
+    if (cvModal.classList.contains("hidden")) return;
+
+    if (e.key === "ArrowLeft") {
+      onPrevPage();
+    } else if (e.key === "ArrowRight") {
+      onNextPage();
+    } else if (e.key === "+" || e.key === "=") {
+      zoomIn();
+    } else if (e.key === "-" || e.key === "_") {
+      zoomOut();
+    }
+  });
+}
