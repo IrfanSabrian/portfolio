@@ -472,13 +472,36 @@ function initCVModal() {
   pdfjsLib.GlobalWorkerOptions.workerSrc =
     "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
 
+  function calculateOptimalScale(page) {
+    const container = pdfContainer.parentElement;
+    const containerWidth = container.clientWidth - 32; // Account for padding
+    const containerHeight = container.clientHeight - 32;
+    const viewport = page.getViewport({ scale: 1 });
+
+    // Calculate scale to fit width and height
+    const scaleWidth = containerWidth / viewport.width;
+    const scaleHeight = containerHeight / viewport.height;
+
+    // Use the smaller scale to ensure PDF fits both dimensions
+    let optimalScale = Math.min(scaleWidth, scaleHeight);
+
+    // Limit scale between 0.5 and 2.0
+    optimalScale = Math.min(Math.max(optimalScale, 0.5), 2.0);
+
+    return optimalScale;
+  }
+
   function renderPage(num) {
     pageRendering = true;
     pdfDoc.getPage(num).then((page) => {
+      // Calculate optimal scale on first render or resize
+      if (scale === 1.0) {
+        scale = calculateOptimalScale(page);
+      }
+
       const viewport = page.getViewport({ scale });
       canvas.height = viewport.height;
       canvas.width = viewport.width;
-      pdfContainer.style.width = `${viewport.width}px`;
 
       const renderContext = {
         canvasContext: ctx,
@@ -493,72 +516,114 @@ function initCVModal() {
           renderPage(pageNumPending);
           pageNumPending = null;
         }
-        pageInfo.textContent = `Page ${pageNum} of ${pdfDoc.numPages}`;
+        updateUI();
       });
     });
   }
 
-  function queueRenderPage(num) {
-    if (pageRendering) {
-      pageNumPending = num;
-    } else {
-      renderPage(num);
-    }
-  }
+  function updateUI() {
+    // Update page info
+    pageInfo.textContent = `Page ${pageNum} of ${pdfDoc.numPages}`;
 
-  function onPrevPage() {
-    if (pageNum <= 1) return;
-    pageNum--;
-    queueRenderPage(pageNum);
-  }
-
-  function onNextPage() {
-    if (pageNum >= pdfDoc.numPages) return;
-    pageNum++;
-    queueRenderPage(pageNum);
-  }
-
-  function updateZoomLevel() {
+    // Update zoom level
     zoomLevel.textContent = `${Math.round(scale * 100)}%`;
+
+    // Update navigation buttons
+    prevButton.disabled = pageNum <= 1;
+    nextButton.disabled = pageNum >= pdfDoc.numPages;
+
+    // Update button styles based on disabled state
+    [prevButton, nextButton].forEach((button) => {
+      if (button.disabled) {
+        button.classList.add("opacity-50", "cursor-not-allowed");
+      } else {
+        button.classList.remove("opacity-50", "cursor-not-allowed");
+      }
+    });
+  }
+
+  // Handle window resize with debounce
+  let resizeTimeout;
+  function handleResize() {
+    if (resizeTimeout) {
+      clearTimeout(resizeTimeout);
+    }
+    resizeTimeout = setTimeout(() => {
+      if (pdfDoc) {
+        scale = 1.0; // Reset scale to recalculate optimal size
+        renderPage(pageNum);
+      }
+    }, 100);
+  }
+
+  window.addEventListener("resize", handleResize);
+
+  function toggleCVModal() {
+    cvModal.classList.toggle("hidden");
+    document.body.classList.toggle("overflow-hidden");
+    if (!cvModal.classList.contains("hidden")) {
+      if (!pdfDoc) {
+        loadPDF();
+      } else {
+        scale = 1.0; // Reset scale when reopening
+        renderPage(pageNum);
+      }
+    }
   }
 
   function zoomIn() {
     if (scale >= 3.0) return;
-    scale += 0.25;
-    updateZoomLevel();
-    queueRenderPage(pageNum);
+    scale = Math.min(scale + 0.25, 3.0);
+    renderPage(pageNum);
   }
 
   function zoomOut() {
     if (scale <= 0.5) return;
-    scale -= 0.25;
-    updateZoomLevel();
-    queueRenderPage(pageNum);
+    scale = Math.max(scale - 0.25, 0.5);
+    renderPage(pageNum);
   }
 
   // Load PDF
   function loadPDF() {
     const url = "assets/pdf/CV_Irfan Sabrian Fadhillah.pdf";
-    pdfjsLib.getDocument(url).promise.then((pdf) => {
-      pdfDoc = pdf;
-      pageInfo.textContent = `Page ${pageNum} of ${pdf.numPages}`;
-      renderPage(pageNum);
-    });
-  }
-
-  function toggleCVModal() {
-    cvModal.classList.toggle("hidden");
-    document.body.classList.toggle("overflow-hidden");
-    if (!cvModal.classList.contains("hidden") && !pdfDoc) {
-      loadPDF();
-    }
+    pdfjsLib
+      .getDocument(url)
+      .promise.then((pdf) => {
+        pdfDoc = pdf;
+        renderPage(pageNum);
+      })
+      .catch((error) => {
+        console.error("Error loading PDF:", error);
+        pdfContainer.innerHTML = `
+        <div class="text-center p-8">
+          <div class="text-red-500 mb-2">
+            <i class="fas fa-exclamation-circle text-4xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Failed to load PDF</h3>
+          <p class="text-gray-600">Please try again later or download the file directly.</p>
+        </div>
+      `;
+      });
   }
 
   // Event listeners
   cvModalBtn.addEventListener("click", toggleCVModal);
   cvModalClose.addEventListener("click", toggleCVModal);
-  prevButton.addEventListener("click", onPrevPage);
-  nextButton.addEventListener("click", onNextPage);
+
+  prevButton.addEventListener("click", () => {
+    if (pageNum > 1) {
+      pageNum--;
+      renderPage(pageNum);
+    }
+  });
+
+  nextButton.addEventListener("click", () => {
+    if (pageNum < pdfDoc.numPages) {
+      pageNum++;
+      renderPage(pageNum);
+    }
+  });
+
   zoomInButton.addEventListener("click", zoomIn);
   zoomOutButton.addEventListener("click", zoomOut);
 
@@ -593,14 +658,25 @@ function initCVModal() {
   document.addEventListener("keydown", (e) => {
     if (cvModal.classList.contains("hidden")) return;
 
-    if (e.key === "ArrowLeft") {
-      onPrevPage();
-    } else if (e.key === "ArrowRight") {
-      onNextPage();
-    } else if (e.key === "+" || e.key === "=") {
-      zoomIn();
-    } else if (e.key === "-" || e.key === "_") {
-      zoomOut();
+    switch (e.key) {
+      case "ArrowLeft":
+        if (pageNum > 1) {
+          pageNum--;
+          renderPage(pageNum);
+        }
+        break;
+      case "ArrowRight":
+        if (pageNum < pdfDoc?.numPages) {
+          pageNum++;
+          renderPage(pageNum);
+        }
+        break;
+      case "+":
+        zoomIn();
+        break;
+      case "-":
+        zoomOut();
+        break;
     }
   });
 }

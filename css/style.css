@@ -132,6 +132,36 @@
   fill: #2563eb;
 }
 
+/* Dark mode navbar */
+.dark .navbar-scrolled {
+  background-color: rgba(30, 41, 59, 0.95);
+  border-bottom-color: #334155;
+}
+
+.dark .navbar-scrolled .nav-link {
+  color: #e5e7eb;
+}
+
+.dark .navbar-scrolled .nav-link:hover {
+  color: #60a5fa;
+}
+
+.dark .navbar-scrolled .logo-text {
+  color: #60a5fa;
+}
+
+.dark .navbar-scrolled .logo-path {
+  fill: #60a5fa;
+}
+
+.dark #menu-toggle {
+  color: #e5e7eb;
+}
+
+.dark .navbar-scrolled #menu-toggle {
+  color: #e5e7eb;
+}
+
 /* Mobile menu styles */
 .mobile-menu-link {
   position: relative;
@@ -144,6 +174,21 @@
 .mobile-menu-link:hover {
   color: #2563eb;
   background-color: #f3f4f6;
+}
+
+/* Dark mode mobile menu */
+.dark #mobile-menu {
+  background-color: #1e293b;
+  border-color: #334155;
+}
+
+.dark .mobile-menu-link {
+  color: #e5e7eb;
+}
+
+.dark .mobile-menu-link:hover {
+  color: #2563eb;
+  background-color: #334155;
 }
 
 /* Hero section */

@@ -236,7 +236,7 @@
                 </a>
                 <button
                   id="cv-modal-btn"
-                  class="inline-flex items-center justify-center px-6 sm:px-8 py-3 border-2 border-white text-white rounded-full font-semibold transition-all hover:bg-white hover:text-primary hover:-translate-y-1 group"
+                  class="inline-flex items-center justify-center px-6 sm:px-8 py-3 border-2 border-white text-white rounded-full font-semibold transition-all hover:bg-white hover:text-primary hover:-translate-y-1 group mb-4 sm:mb-0"
                 >
                   <i
                     class="fas fa-file-alt mr-2 group-hover:scale-110 transition-transform"
@@ -730,16 +730,12 @@
                   <i class="fab fa-github"></i>
                 </a>
                 <a
-                  href="#"
+                  href="https://www.linkedin.com/in/irfan-sabrian-b1a320372/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors"
                 >
                   <i class="fab fa-linkedin"></i>
-                </a>
-                <a
-                  href="#"
-                  class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors"
-                >
-                  <i class="fab fa-twitter"></i>
                 </a>
                 <a
                   href="https://instagram.com/irf.shyonn"
@@ -849,74 +845,89 @@
     <!-- CV Modal -->
     <div id="cv-modal" class="fixed inset-0 z-50 hidden">
       <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
-      <div class="fixed inset-0 flex items-center justify-center p-4">
+      <div class="fixed inset-0 flex items-center justify-center p-2 sm:p-4">
         <div
-          class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl w-full max-w-5xl max-h-[90vh] flex flex-col border border-gray-200 dark:border-gray-700"
+          class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl w-full max-w-5xl max-h-[95vh] sm:max-h-[90vh] flex flex-col border border-gray-200 dark:border-gray-700"
         >
+          <!-- Modal Header -->
           <div
-            class="flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-700"
+            class="flex flex-wrap gap-3 p-3 sm:p-4 border-b border-gray-200 dark:border-gray-700"
           >
-            <div class="flex items-center gap-4">
+            <!-- Left Side -->
+            <div class="flex flex-wrap items-center gap-3 flex-1">
               <h3
-                class="text-xl font-semibold text-gray-800 dark:text-gray-100"
+                class="text-lg font-semibold text-gray-800 dark:text-gray-100 mr-3"
               >
                 CV_Irfan Sabrian
               </h3>
-              <div class="flex items-center gap-2 ml-4">
+              <div
+                class="flex items-center gap-2 border-l border-gray-200 dark:border-gray-700 pl-3"
+              >
                 <button
                   id="cv-zoom-out"
-                  class="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  class="p-1.5 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                 >
                   <i class="fas fa-search-minus"></i>
                 </button>
                 <span
                   id="cv-zoom-level"
-                  class="text-sm font-medium min-w-[3rem] text-center text-gray-600 dark:text-gray-300"
+                  class="text-sm font-medium w-14 text-center text-gray-600 dark:text-gray-300"
                   >100%</span
                 >
                 <button
                   id="cv-zoom-in"
-                  class="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  class="p-1.5 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                 >
                   <i class="fas fa-search-plus"></i>
                 </button>
                 <button
                   id="cv-download"
-                  class="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors ml-2"
+                  class="p-1.5 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors ml-1"
                 >
                   <i class="fas fa-download"></i>
                 </button>
               </div>
             </div>
+            <!-- Right Side -->
             <div class="flex items-center gap-2">
-              <button
-                id="cv-prev"
-                class="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              <div
+                class="flex items-center gap-1 bg-gray-50 dark:bg-gray-900 rounded-lg p-1"
               >
-                <i class="fas fa-chevron-left"></i>
-              </button>
-              <span
-                id="cv-page-info"
-                class="text-sm font-medium min-w-[5rem] text-center text-gray-600 dark:text-gray-300"
-                >Page 1 of 1</span
-              >
-              <button
-                id="cv-next"
-                class="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-              >
-                <i class="fas fa-chevron-right"></i>
-              </button>
+                <button
+                  id="cv-prev"
+                  class="p-1.5 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                >
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+                <span
+                  id="cv-page-info"
+                  class="text-sm font-medium w-16 text-center text-gray-600 dark:text-gray-300"
+                  >Page 1 of 1</span
+                >
+                <button
+                  id="cv-next"
+                  class="p-1.5 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                >
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+              </div>
               <button
                 id="cv-modal-close"
-                class="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors ml-2"
+                class="p-1.5 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
               >
                 <i class="fas fa-times"></i>
               </button>
             </div>
           </div>
-          <div class="flex-1 p-4 overflow-auto bg-gray-50 dark:bg-gray-900">
-            <div id="pdf-container" class="mx-auto">
-              <canvas id="pdf-viewer" class="shadow-lg rounded-lg"></canvas>
+          <!-- Modal Content -->
+          <div
+            class="flex-1 p-2 sm:p-4 overflow-auto bg-gray-50 dark:bg-gray-900"
+          >
+            <div id="pdf-container" class="mx-auto flex justify-center">
+              <canvas
+                id="pdf-viewer"
+                class="max-w-full shadow-lg rounded-lg bg-white dark:bg-gray-800"
+              ></canvas>
             </div>
           </div>
         </div>
